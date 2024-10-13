@@ -18,10 +18,15 @@ function showSuccess(input) {
   const formControl = input.parentElement;
   formControl.className = "form-control success";
 }
-
+function isValidEmail(email) {
+  const re =
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
 //event listener
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+
   //chceck if username input is empty of not
   if (username.value === "" || username.value === " ") {
     showError(username, "username is required");
@@ -31,6 +36,8 @@ form.addEventListener("submit", (e) => {
   //chceck if email input is empty of not
   if (email.value === "" || email.value === " ") {
     showError(email, "email is required");
+  } else if (!isValidEmail(email.value)) {
+    showError(email, "email is invalid");
   } else {
     showSuccess(email);
   }
