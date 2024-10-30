@@ -23,34 +23,20 @@ function isValidEmail(email) {
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
 }
+function checkRequired(inputArray) {
+  inputArray.forEach(function (input) {
+    if (input.value === "") {
+      showError(input, `${getInputId(input)} is required`);
+    } else {
+      showSuccess(input);
+    }
+  });
+}
+function getInputId(input) {
+  return input.id.charAt(0).toUpperCase() + input.id.slice(1);
+}
 //event listener
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-
-  //chceck if username input is empty of not
-  if (username.value === "" || username.value === " ") {
-    showError(username, "username is required");
-  } else {
-    showSuccess(username);
-  }
-  //chceck if email input is empty of not
-  if (email.value === "" || email.value === " ") {
-    showError(email, "email is required");
-  } else if (!isValidEmail(email.value)) {
-    showError(email, "email is invalid");
-  } else {
-    showSuccess(email);
-  }
-  //chceck if username input is empty of not
-  if (password.value === "" || password.value === " ") {
-    showError(password, "password is required");
-  } else {
-    showSuccess(password);
-  }
-  //chceck if username input is empty of not
-  if (password2.value === "" || password2.value === " ") {
-    showError(password2, "confirm password required");
-  } else {
-    showSuccess(password2);
-  }
+  checkRequired([username, email, password, password2]);
 });
