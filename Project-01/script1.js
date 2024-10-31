@@ -27,13 +27,13 @@ function isValidEmail(email) {
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  //chceck if username input is empty of not
+  //check if username input is empty of not
   if (username.value === "" || username.value === " ") {
     showError(username, "username is required");
   } else {
     showSuccess(username);
   }
-  //chceck if email input is empty of not
+  //check if email input is empty of not
   if (email.value === "" || email.value === " ") {
     showError(email, "email is required");
   } else if (!isValidEmail(email.value)) {
@@ -41,13 +41,13 @@ form.addEventListener("submit", (e) => {
   } else {
     showSuccess(email);
   }
-  //chceck if username input is empty of not
+  //check if username input is empty of not
   if (password.value === "" || password.value === " ") {
     showError(password, "password is required");
   } else {
     showSuccess(password);
   }
-  //chceck if username input is empty of not
+  //check if username input is empty of not
   if (password2.value === "" || password2.value === " ") {
     showError(password2, "confirm password required");
   } else {
